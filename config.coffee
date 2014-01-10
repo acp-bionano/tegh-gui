@@ -16,6 +16,7 @@ exports.config =
         'test/javascripts/test-vendor.js': /^test(\/|\\)(?=vendor)/
       order:
         before: [
+          'bower_components/jquery/jquery.js'
           'app/scripts/init.coffee'
           'app/scripts/routes.coffee'
           'app/scripts/controllers/*'

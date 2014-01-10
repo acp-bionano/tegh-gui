@@ -9,7 +9,7 @@ teghApp.controller 'main', ($scope, $filter) ->
     console.log event if event.type == "initialized"
     printer.processEvent(event)
 
-  # Local Only Properties. These are not part of the tegh protocol spec. They 
+  # Local Only Properties. These are not part of the tegh protocol spec. They
   # are simply for this particular UI so they are not sent to the server.
   localOnly =
     heaters:
@@ -20,6 +20,8 @@ teghApp.controller 'main', ($scope, $filter) ->
     axes:
       speed: -> 40
       distance: -> 10
+    conveyors:
+      speed: -> 0
 
   # e0: { current_temp: 178, target_temp: 185, enabled: true, direction: 1, distance: 3, speed: 5, name: "ABS" },
   # e1: { current_temp: 178, target_temp: 225, enabled: false, direction: -1, distance: 3, speed: 5, name: "PLA" },
@@ -50,6 +52,10 @@ teghApp.controller 'main', ($scope, $filter) ->
 
   $scope.extrudeText = (direction) ->
     if direction == 1 then "Extrude" else "Retract"
+
+  $scope.conveyors = ->
+    _.pick printer.data, (data, key) -> data.type == "conveyor"
+
 
   $scope[k] = _.curry(printer.execAction, 2)(k) for k in ['move', 'home']
 

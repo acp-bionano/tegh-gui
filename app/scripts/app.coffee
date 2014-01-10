@@ -10,7 +10,8 @@ $ ->
   # .bootstrapSwitch('setOffLabel', 'OFF')
   # console.log $('.temperature-panel .switch-small').length
   # console.log c.toString() for c in $('.temperature-panel').children()
-  $panels =  $("#manual_ctrl").find(".temperature-panel, .jog-panel, .extruders-panel")
+  $panels =  $("#manual_ctrl").find(".temperature-panel, .jog-panel,
+    .extruders-panel, .conveyors-panel")
   initPopover $(el) for el in $panels
 
   # Showing one side panel popover at a time

@@ -80,10 +80,37 @@ mixin temperature_panel
       .control-group(ng-repeat = heaters)
         mixin text_input("{{k|uppercase}}", "0", "&deg;C", "comp.target_temp", "k, 'target_temp'")
 
+mixin conveyors_panel
+  - conveyors = "(k, comp) in conveyors()"
+  .conveyors-panel.sub-panel
+    mixin title("Conveyors", "fa-bar-chart-o")
+    .side-row(ng-repeat = conveyors)
+      .btn-group.pull-right
+        .btn.btn-default Disable
+        .btn.btn-default Enable
+      .subtitle.pull-right
+      .title {{k|uppercase}}
+
+    .settings-popover.hide
+      .control-group(ng-repeat = conveyors)
+        mixin text_input("{{k|uppercase}}", 0, "mm/s", "comp.speed", "k, 'speed'")
+
+
+//- mixin fans_panel
+//-   - fans = "(k, comp) in fans()"
+//-   .fans_panel.sub-panel
+//-     mixin title("Fans",icon)
+//-     .side-row(ng-repeat = fans)
+//-       .btn-group.pull-right
+//-         .btn.btn-default Disable
+//-         .btn.btn-default Enable
+
 .side-panel
   mixin move_panel
   mixin temperature_panel
   mixin extruders_panel
+  //- mixin fans_panel
+  mixin conveyors_panel
 .canvas-container
 - //TODO: fan, conveyor, home
 
